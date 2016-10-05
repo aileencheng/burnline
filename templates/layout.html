@@ -1,0 +1,34 @@
+<!doctype html>
+<title>Burnline</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Burnline</h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+    <a href="{{ url_for('new_login') }}">new log in</a>
+  {% else %}
+    Welcome {{ session.user }}  
+    <a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  <div class=container>
+      <div class=left-window>
+        {% block body %}{% endblock %}
+      </div>
+      <div class=right-window>
+        <h1> AM I ON TRACK </h1>
+        {% if not session.logged_in %}
+            <p> Please log in a timeline to see if you are on track. </p>
+        {% else %}
+            <h2> Start Time: {{timeline.start_time}} </h2>
+            <h2> End Time: {{timeline.end_time}} </h2>
+            <h3> add calculations and progress bar or somethign with y/n </h3>
+        {% endif %}
+      </div>
+  </div>
+  
+</div>

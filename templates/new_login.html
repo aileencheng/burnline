@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>New Timeline Entry</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('new_login') }}" method=post>
+    <dl>
+      <dt>Username:
+      <dd><input type=text name=username>
+      <dt>Password:
+      <dd><input type=password name=password>
+      <dt>Start Time: 
+      <dd><input type=datetime name=start_time>
+      <dt>End Time: 
+      <dd><input type=datetime name=end_time>
+      <dd><input type=submit value=New_Login>
+    </dl>
+  </form>
+{% endblock %}
